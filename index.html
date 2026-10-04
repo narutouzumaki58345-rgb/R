@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Мое обещание и любовь для тебя ❤️</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Decorative Ribbon Frame */
+    .ribbon-border-frame {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 100;
+      border: 15px solid transparent;
+      border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Ctext x='0' y='20' font-size='20'%3E💖%3C/text%3E%3Ctext x='30' y='20' font-size='20'%3E✨%3C/text%3E%3Ctext x='15' y='50' font-size='20'%3E🌸%3C/text%3E%3Ctext x='40' y='50' font-size='20'%3E👑%3C/text%3E%3C/svg%3E") 30 repeat;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 420px;
+      background: rgba(255, 255, 255, 0.96);
+      padding: 28px 22px;
+      border-radius: 24px;
+      box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
+      text-align: center;
+      position: relative;
+      z-index: 10;
+      margin: 20px auto;
+      max-height: 92vh;
+      overflow-y: auto;
+    }
+
+    /* Page 1 - Lock Screen */
+    #lock-page h1 {
+      color: #ff3366;
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .gift-box-icon {
+      font-size: 85px;
+      margin: 15px 0;
+      cursor: pointer;
+      display: inline-block;
+      animation: pulseGift 1.8s infinite ease-in-out;
+      filter: drop-shadow(0 8px 15px rgba(255, 51, 102, 0.3));
+      transition: transform 0.3s;
+    }
+
+    .gift-box-icon:hover {
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    @keyframes pulseGift {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    #lock-page p {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    input[type="password"] {
+      width: 85%;
+      padding: 14px;
+      border: 2px solid #ff99bb;
+      border-radius: 25px;
+      text-align: center;
+      outline: none;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      background: linear-gradient(45deg, #ff3366, #ff6699);
+      color: white;
+      border: none;
+      padding: 14px 35px;
+      border-radius: 25px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(255, 51, 102, 0.4);
+      transition: transform 0.2s;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    #error-msg {
+      color: red;
+      font-size: 13px;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Page 2 - Main Screen */
+    #main-page {
+      display: none;
+    }
+
+    /* Top Love Banner */
+    .top-love-header {
+      margin-bottom: 20px;
+    }
+
+    .top-love-header h2 {
+      font-size: 22px;
+      color: #ff3366;
+      text-shadow: 0 0 10px rgba(255, 51, 102, 0.3);
+    }
+
+    /* Deep Love & Loyalty Express Box */
+    .love-message-box {
+      background: linear-gradient(135deg, #fff5f8, #ffe6ee);
+      border: 2px solid #ffb3c6;
+      border-radius: 18px;
+      padding: 22px 18px;
+      margin-top: 10px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(255, 105, 180, 0.2);
+    }
+
+    .love-message-box h3 {
+      color: #ff1493;
+      font-size: 19px;
+      margin-bottom: 12px;
+    }
+
+    .love-message-box p {
+      color: #444;
+      font-size: 14.5px;
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    /* Continuous Flying Balloons (z-index: 1000) */
+    .balloon-wrapper {
+      position: fixed;
+      bottom: -100px;
+      font-size: 65px;
+      cursor: pointer;
+      animation: floatUp 6s linear infinite;
+      z-index: 1000;
+      user-select: none;
+      transition: transform 0.2s;
+      filter: drop-shadow(0 8px 15px rgba(0,0,0,0.2));
+    }
+
+    .balloon-wrapper:hover {
+      transform: scale(1.3);
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-115vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Pop-up Compliment Box */
+    #wish-popup {
+      position: fixed;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-150px);
+      background: linear-gradient(135deg, #ff3366, #ff1493);
+      color: white;
+      padding: 16px 25px;
+      border-radius: 30px;
+      font-weight: bold;
+      box-shadow: 0 10px 30px rgba(255, 20, 147, 0.5);
+      z-index: 2000;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-size: 16px;
+      text-align: center;
+      width: 88%;
+      max-width: 400px;
+      border: 3px solid #ffffff;
+    }
+
+    #wish-popup.show {
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ribbon-border-frame"></div>
+  <div id="wish-popup">🎈 Лопай шарики, чтобы узнать комплимент!</div>
+
+  <!-- Page 1: Surprise Box & Password Lock Screen -->
+  <div class="container" id="lock-page">
+    <h1>🎁 Особенный сюрприз для тебя! ✨</h1>
+    <div class="gift-box-icon" onclick="focusPassword()">🎁</div>
+    <p>Внутри тебя ждет особенное послание любви и верности!<br>Введи пароль, чтобы открыть 👇</p>
+    
+    <input type="password" id="passwordInput" placeholder="Введите пароль (Ruslana)...">
+    <br>
+    <button onclick="checkPassword()">ОТКРЫТЬ 🔓</button>
+    <p id="error-msg">❌ Неверный пароль! Введи: <b>Ruslana</b></p>
+  </div>
+
+  <!-- Page 2: Main Love & Loyalty Page (Russian) -->
+  <div class="container" id="main-page">
+    
+    <div class="top-love-header">
+      <h2>💖 Руслана, ты мой весь мир! 💖</h2>
+    </div>
+
+    <!-- Expressive Deep Love & Loyalty Message Box -->
+    <div class="love-message-box">
+      <h3>🔒 Мое обещание и любовь к тебе</h3>
+      <p>
+        <b>Руслана</b>, я безумно люблю тебя! Каждая секунда, проведенная с тобой — самое ценное сокровище в моей жизни.
+        <br><br>
+        Я хочу, чтобы ты знала: **я буду всегда верен тебе**. Наша связь и твое доверие для меня дороже всего. Я обещаю дарить тебе всю свою любовь, заботу и преданность каждый день! 💖✨💍
+      </p>
+    </div>
+  </div>
+
+  <script>
+    function focusPassword() {
+      document.getElementById('passwordInput').focus();
+    }
+
+    function checkPassword() {
+      const input = document.getElementById('passwordInput').value.trim();
+      
+      // Password set to 'Ruslana'
+      if (input.toLowerCase() === "ruslana") {
+        document.getElementById('lock-page').style.display = 'none';
+        document.getElementById('main-page').style.display = 'block';
+        startContinuousBalloons();
+      } else {
+        document.getElementById('error-msg').style.display = 'block';
+      }
+    }
+
+    /* Beauty & Grace Compliments for Ruslana in Russian */
+    const beautyCompliments = [
+      "✨ Руслана, твоя улыбка — самое прекрасное, что я видел!",
+      "👑 Твоя красота и доброта просто завораживают!",
+      "💖 Руслана, ты самая нежная и милая девушка на свете!",
+      "🌸 Твоя красота наполняет каждый день счастьем!",
+      "🌟 Руслана, ты невероятно прекрасна и уникальна!",
+      "💝 Твой взгляд заставляет мое сердце биться чаще!",
+      "✨ Руслана, ты самое настоящее чудо в моей жизни!"
+    ];
+
+    function startContinuousBalloons() {
+      const icons = ['🎈', '💖', '🎁', '⭐', '🌸', '💝', '✨'];
+      
+      setInterval(() => {
+        const balloon = document.createElement('div');
+        balloon.classList.add('balloon-wrapper');
+        balloon.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+        balloon.style.left = Math.random() * 85 + 'vw';
+        balloon.style.animationDuration = Math.random() * 2 + 5 + 's';
+
+        // Pop balloon and show beauty compliment in Russian
+        balloon.addEventListener('click', () => {
+          showComplimentPopup();
+          balloon.remove();
+        });
+
+        document.body.appendChild(balloon);
+
+        setTimeout(() => balloon.remove(), 7000);
+      }, 600);
+    }
+
+    function showComplimentPopup() {
+      const popup = document.getElementById('wish-popup');
+      const randomComp = beautyCompliments[Math.floor(Math.random() * beautyCompliments.length)];
+      popup.innerHTML = randomComp;
+      popup.classList.add('show');
+
+      setTimeout(() => popup.classList.remove('show'), 3500);
+    }
+  </script>
+</body>
+</html>
